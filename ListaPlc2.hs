@@ -15,6 +15,7 @@ testaListF f x= foldr (\a b -> f a && b) True x
 
 type Nome = String
 type Conteudo = String
+<<<<<<< HEAD
 data Arquivo = Simples Nome Conteudo | Diretorio Nome [Arquivo] deriving (Eq)
 
 instance Show Arquivo where
@@ -36,3 +37,5 @@ allArq :: Arquivo -> [Nome]
 allArq (Simples n c) = [n]
 allArq (Diretorio n []) = []
 allArq (Diretorio n (x:xs)) = allArq x ++ allArq (Diretorio n xs)
+=======
+>>>>>>> 2209f26a6b3d8fd95360c49b93aac2339d36dc0e
