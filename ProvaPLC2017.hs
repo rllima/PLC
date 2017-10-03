@@ -45,3 +45,12 @@ pop (Pilha (x:xs)) = (Pilha xs)
 top :: Pilha t -> t
 top PilhaVazia = error "Pilha Vazia"
 top (Pilha (x:xs)) = x
+
+data Btree = Leaf | Node (Btree) Int  (Btree) deriving (Show)
+
+insert :: Int -> Btree -> Btree
+insert y Leaf  = Node Leaf y Leaf
+insert y (Node xl k xr)
+ |y==k = (Node xl k xr)
+ |y < k = Node (insert y xl) k xr
+ |y > k = Node xl k (insert y xr)
