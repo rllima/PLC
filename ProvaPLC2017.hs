@@ -54,3 +54,19 @@ insert y (Node xl k xr)
  |y==k = (Node xl k xr)
  |y < k = Node (insert y xl) k xr
  |y > k = Node xl k (insert y xr)
+
+arvLista :: Btree -> [Int]
+arvLista Leaf = []
+arvLista (Node xl k xr) = arvLista xl ++ [k] ++ arvLista xr
+
+somaArv :: Btree -> Int
+somaArv Leaf = 0
+somaArv (Node xl k xr) = somaArv xl + k + somaArv xr
+
+listaArv :: [Int] -> Btree
+listaArv [] = Leaf
+listaArv (x:xs) = Node (listaArv (filter (<x) xs)) x (listaArv (filter(>x)xs))
+
+quick :: (Ord a)=> [a] -> [a]
+quick[] = []
+quick (x:xs) = (quick (filter(<=x)xs)) ++ [x] ++ (quick(filter(>x)xs))
